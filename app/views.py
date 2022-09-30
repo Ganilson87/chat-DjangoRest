@@ -32,6 +32,18 @@ def message_list(request, sender=None, receiver=None):
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
-def listaChat(request):
+# def listaChat(request):
+
     
-    return JsonResponse(serializer.data, safe=False)
+#     return JsonResponse(serializer.data, safe=False)
+
+def index(request, sender=None, receiver=None):
+    recevers = User.objects.all().filter(is_active=True )
+
+    context = {
+        "receiver":recevers,
+    }
+    return render(request,"index.html", context=context)
+def chat(request):
+    
+    return render (request,"chat.html")

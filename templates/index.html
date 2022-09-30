@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Chat APP</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='{% static 'assets/css/bootstrap.css'%}'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <div class="container">
+   {% block content %}
+   <br><br><br>
+   <h3> {% if user.is_authenticated %}
+       <a name="" id="" class="btn btn-primary" href="#" role="button">{{user.username}}</a>
+       {% endif %} Seja Bem vindo!</h3> 
+   
+   <hr>
+   <div class="form-group">
+ <div class="list-group">
+   <a href="#" class="list-group-item list-group-item-action active">Usuarios ativos</a>
+  
+   {% for receivers in receiver %}
+{% if receivers.id == user.id %}
+   {% else %}
+   <a href="Send/{{receivers.id}}" class="list-group-item list-group-item-action ">{{receivers}}</a>
+
+   {% endif %}
+   {% endfor %}
+ </div>
+   </div>
+   {% endblock  %}
+    </div>
+</body>
+</html>
